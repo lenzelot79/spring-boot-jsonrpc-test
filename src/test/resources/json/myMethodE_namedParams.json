@@ -1,0 +1,11 @@
+{
+  "jsonrpc": "2.0",
+  "method": "myMethodE",
+  "id": 99,
+  "params": {
+    "testParam": {
+      "str1" : "Bob",
+      "int1" : 42
+    }
+  }
+}
