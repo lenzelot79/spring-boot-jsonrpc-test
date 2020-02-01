@@ -111,8 +111,13 @@ class MyJsonRpcControllerTest {
     // TODO: Unit-Tests in der Library selbst
 
     // TODO: error cases
+    // > Error conververter for mapping exceptions to JSON(and vise versa for RestClient)
 
     // TODO: Spring Security, Inject principal and HttpRequest
+    // > Should work out of the box on server
+    // > Rest-Client: Use SecuredRestTemplated for clients like Keycloak, otherwise add "Authorization" header VIA interceptor
+    
+    // TODO: Headers annotations for JsonRPC client
 
     private String getResourceAsString(final String name) throws IOException {
         return new String(this.getClass().getResourceAsStream(name).readAllBytes());
