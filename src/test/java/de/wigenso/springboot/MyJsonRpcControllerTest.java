@@ -117,8 +117,6 @@ class MyJsonRpcControllerTest {
     // > Should work out of the box on server
     // > Rest-Client: Use SecuredRestTemplated for clients like Keycloak, otherwise add "Authorization" header VIA interceptor
     
-    // TODO: Headers annotations for JsonRPC client
-
     private String getResourceAsString(final String name) throws IOException {
         return new String(this.getClass().getResourceAsStream(name).readAllBytes());
     }

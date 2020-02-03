@@ -1,6 +1,7 @@
 package de.wigenso.springboot;
 
 import de.wigenso.springboot.jsonrpc.JsonRpcClient;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 @JsonRpcClient("/jsonrpc/api")
 public interface MyJsonRpcControllerClient {
@@ -14,5 +15,7 @@ public interface MyJsonRpcControllerClient {
     String myMethodD(final String str1, final int int1);
 
     TestParam myMethodE(final TestParam testParam);
+
+    String echoHeader(@RequestHeader("x-test") final String value);
 
 }

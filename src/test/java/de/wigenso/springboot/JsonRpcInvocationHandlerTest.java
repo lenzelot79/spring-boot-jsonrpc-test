@@ -53,10 +53,15 @@ class JsonRpcInvocationHandlerTest {
         final TestParam resE = client.myMethodE(testParam);
         assertThat(resE.getInt1()).isEqualTo(2);
         assertThat(resE.getStr1()).isEqualTo("++");
+    }
 
+    @Test
+    void headersItCase() {
 
+        final MyJsonRpcControllerClient client = client();
 
-
+        String result = client.echoHeader("hello");
+        assertThat(result).isEqualTo("hello");
 
     }
 
