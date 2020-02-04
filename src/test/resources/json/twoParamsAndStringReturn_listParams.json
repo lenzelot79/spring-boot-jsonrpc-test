@@ -1,6 +1,6 @@
 {
   "jsonrpc": "2.0",
-  "method": "myMethodD",
+  "method": "twoParamsAndStringReturn",
   "id": 99,
   "params": [ "Bob", 42 ]
 }

@@ -1,6 +1,6 @@
 {
   "jsonrpc": "2.0",
-  "method": "myMethodE",
+  "method": "complexParamAndReturn",
   "id": 99,
   "params": {
     "testParam": {

@@ -36,21 +36,21 @@ class JsonRpcInvocationHandlerTest {
 
         final MyJsonRpcControllerClient client = client();
 
-        client.myMethodA();
+        client.voidParamAndVoidReturn();
 
-        final String resB = client.myMethodB();
+        final String resB = client.voidParamAndStringReturn();
         assertThat(resB).isEqualTo("Hello World");
 
-        final Exception e = assertThrows(Exception.class, client::myMethodC);
+        final Exception e = assertThrows(Exception.class, client::throwsRuntimeExceptions);
         assertThat(((UndeclaredThrowableException) e).getUndeclaredThrowable().getMessage()).isEqualTo("Hello Error");
 
-        final String resD = client.myMethodD("Alice", 7);
+        final String resD = client.twoParamsAndStringReturn("Alice", 7);
         assertThat(resD).isEqualTo("Alice 7");
 
         final TestParam testParam = new TestParam();
         testParam.setInt1(1);
         testParam.setStr1("+");
-        final TestParam resE = client.myMethodE(testParam);
+        final TestParam resE = client.complexParamAndReturn(testParam);
         assertThat(resE.getInt1()).isEqualTo(2);
         assertThat(resE.getStr1()).isEqualTo("++");
     }
@@ -60,8 +60,11 @@ class JsonRpcInvocationHandlerTest {
 
         final MyJsonRpcControllerClient client = client();
 
-        String result = client.echoHeader("hello");
-        assertThat(result).isEqualTo("hello");
+        final String result1 = client.echoHeader("hello");
+        assertThat(result1).isEqualTo("hello");
+
+        final String result2 = client.combineHeaderAndParam("hello", "+world");
+        assertThat(result2).isEqualTo("hello+world");
 
     }
 

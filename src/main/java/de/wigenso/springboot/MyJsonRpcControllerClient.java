@@ -6,16 +6,18 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @JsonRpcClient("/jsonrpc/api")
 public interface MyJsonRpcControllerClient {
 
-    void myMethodA();
+    void voidParamAndVoidReturn();
 
-    String myMethodB();
+    String voidParamAndStringReturn();
 
-    void myMethodC();
+    void throwsRuntimeExceptions();
 
-    String myMethodD(final String str1, final int int1);
+    String twoParamsAndStringReturn(final String str1, final int int1);
 
-    TestParam myMethodE(final TestParam testParam);
+    TestParam complexParamAndReturn(final TestParam testParam);
 
     String echoHeader(@RequestHeader("x-test") final String value);
+
+    String combineHeaderAndParam(@RequestHeader("x-test") final String value1, final String value2);
 
 }

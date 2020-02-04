@@ -1,8 +1,6 @@
 package de.wigenso.springboot;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.wigenso.springboot.MyJsonRpcController;
-import de.wigenso.springboot.TestParam;
 import de.wigenso.springboot.jsonrpc.JsonRpcResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,7 +31,7 @@ class MyJsonRpcControllerTest {
     void testMethodA() throws Exception {
 
         mockMvc.perform(post(MyJsonRpcController.API)
-                .content(getResourceAsString("/json/myMethodA_noParams.json"))
+                .content(getResourceAsString("/json/voidParamAndVoidReturn.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
@@ -43,7 +41,7 @@ class MyJsonRpcControllerTest {
     void testMethodB() throws Exception {
 
         MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
-                .content(getResourceAsString("/json/myMethodB_noParams.json"))
+                .content(getResourceAsString("/json/voidParamAndStringReturn.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -56,7 +54,7 @@ class MyJsonRpcControllerTest {
     void testMethodC() throws Exception {
 
         final MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
-                .content(getResourceAsString("/json/myMethodC_noParams.json"))
+                .content(getResourceAsString("/json/throwsRuntimeExceptions.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -70,7 +68,7 @@ class MyJsonRpcControllerTest {
     void testMethodD_withNamedParameters() throws Exception {
 
         final MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
-                .content(getResourceAsString("/json/myMethodD_namedParams.json"))
+                .content(getResourceAsString("/json/twoParamsAndStringReturn_namedParams.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -83,7 +81,7 @@ class MyJsonRpcControllerTest {
     void testMethodD_withListParameters() throws Exception {
 
         final MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
-                .content(getResourceAsString("/json/myMethodD_listParams.json"))
+                .content(getResourceAsString("/json/twoParamsAndStringReturn_listParams.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -97,7 +95,7 @@ class MyJsonRpcControllerTest {
     void testMethodE_withListParameters() throws Exception {
 
         final MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
-                .content(getResourceAsString("/json/myMethodE_namedParams.json"))
+                .content(getResourceAsString("/json/complexParamAndReturn.json"))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();

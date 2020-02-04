@@ -19,26 +19,26 @@ public class MyJsonRpcController implements JsonRpcController {
     private HttpServletRequest httpServletRequest;
 
     @JsonRpc
-    public void myMethodA() {
+    public void voidParamAndVoidReturn() {
     }
 
     @JsonRpc
-    public String myMethodB() {
+    public String voidParamAndStringReturn() {
         return "Hello World";
     }
 
     @JsonRpc
-    public void myMethodC() {
+    public void throwsRuntimeExceptions() {
         throw new RuntimeException("Hello Error");
     }
 
     @JsonRpc
-    public String myMethodD(final String str1, final int int1) {
+    public String twoParamsAndStringReturn(final String str1, final int int1) {
         return str1 + " " + int1;
     }
 
     @JsonRpc
-    public TestParam myMethodE(final TestParam testParam) {
+    public TestParam complexParamAndReturn(final TestParam testParam) {
         final TestParam r = new TestParam();
         r.setStr1(testParam.getStr1() + "+");
         r.setInt1(testParam.getInt1() + 1);
@@ -48,6 +48,11 @@ public class MyJsonRpcController implements JsonRpcController {
     @JsonRpc
     public String echoHeader() {
         return httpServletRequest.getHeader("x-test");
+    }
+
+    @JsonRpc
+    public String combineHeaderAndParam(final String value2) {
+        return httpServletRequest.getHeader("x-test") + value2;
     }
 
 }
