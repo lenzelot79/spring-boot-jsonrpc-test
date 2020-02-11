@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(MyJsonRpcMethodSecurityController.class)
+@WebMvcTest(controllers = MyJsonRpcMethodSecurityController.class)
 class MyJsonRpcMethodSecurtyControllerTest {
 
     @Autowired
@@ -27,6 +27,9 @@ class MyJsonRpcMethodSecurtyControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    // TODO: schlägt fehl, weil der Test falsch ist, nicht wegen dem Controller
+
 
     @WithMockUser(value = "bob", roles = { "USER", "SPECIAL_BOB" })
     @Test

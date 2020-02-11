@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping(value = MyJsonRpcController.API)
 @RpcController
-public class MyJsonRpcController implements JsonRpcController {
+public class MyJsonRpcController extends JsonRpcController {
 
     static final String API = "/jsonrpc/api";
 

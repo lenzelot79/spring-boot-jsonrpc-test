@@ -8,11 +8,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 
 @RequestMapping(value = MyJsonRpcMethodSecurityController.API) // TODO: add to RpcController annotation
 @RpcController
-public class MyJsonRpcMethodSecurityController implements JsonRpcController {
+public class MyJsonRpcMethodSecurityController extends JsonRpcController {
 
     static final String API = "/jsonrpc/secureapi";
 
@@ -30,5 +29,6 @@ public class MyJsonRpcMethodSecurityController implements JsonRpcController {
     public String onlyForBob() {
         return "hello secret for bob";
     }
+
 
 }
