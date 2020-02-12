@@ -19,5 +19,4 @@ public interface MyJsonRpcControllerClient {
     String echoHeader(@RequestHeader("x-test") final String value);
 
     String combineHeaderAndParam(@RequestHeader("x-test") final String value1, final String value2);
-
 }

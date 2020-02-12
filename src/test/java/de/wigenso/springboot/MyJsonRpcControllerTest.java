@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -19,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(MyJsonRpcController.class)
+@WithMockUser(value = "bob", roles = { "USER" })
 class MyJsonRpcControllerTest {
 
     @Autowired
@@ -28,7 +30,7 @@ class MyJsonRpcControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void testMethodA() throws Exception {
+    void testVoidParamAndVoidReturn() throws Exception {
 
         mockMvc.perform(post(MyJsonRpcController.API)
                 .content(getResourceAsString("/json/voidParamAndVoidReturn.json"))
@@ -38,7 +40,7 @@ class MyJsonRpcControllerTest {
     }
 
     @Test
-    void testMethodB() throws Exception {
+    void testVoidParamAndStringReturn() throws Exception {
 
         MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
                 .content(getResourceAsString("/json/voidParamAndStringReturn.json"))
@@ -51,7 +53,7 @@ class MyJsonRpcControllerTest {
     }
 
     @Test
-    void testMethodC() throws Exception {
+    void testThrowsRuntimeExceptions() throws Exception {
 
         final MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
                 .content(getResourceAsString("/json/throwsRuntimeExceptions.json"))
@@ -65,7 +67,7 @@ class MyJsonRpcControllerTest {
     }
 
     @Test
-    void testMethodD_withNamedParameters() throws Exception {
+    void twoParamsAndStringReturn_namedParams() throws Exception {
 
         final MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
                 .content(getResourceAsString("/json/twoParamsAndStringReturn_namedParams.json"))
@@ -78,7 +80,7 @@ class MyJsonRpcControllerTest {
     }
 
     @Test
-    void testMethodD_withListParameters() throws Exception {
+    void twoParamsAndStringReturn_listParams() throws Exception {
 
         final MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
                 .content(getResourceAsString("/json/twoParamsAndStringReturn_listParams.json"))
@@ -92,7 +94,7 @@ class MyJsonRpcControllerTest {
     }
 
     @Test
-    void testMethodE_withListParameters() throws Exception {
+    void testComplexParamAndReturn() throws Exception {
 
         final MvcResult result = mockMvc.perform(post(MyJsonRpcController.API)
                 .content(getResourceAsString("/json/complexParamAndReturn.json"))
