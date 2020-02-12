@@ -1,3 +1,4 @@
+
 package de.wigenso.springboot;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -20,7 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = MyJsonRpcMethodSecurityController.class)
-class MyJsonRpcMethodSecurtyControllerTest {
+@Import({MethodSecurityConfiguration.class, SecurityConfiguration.class})
+class MyJsonRpcMethodSecurityControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -28,27 +31,34 @@ class MyJsonRpcMethodSecurtyControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    // TODO: schlägt fehl, weil der Test falsch ist, nicht wegen dem Controller
-
 
     @WithMockUser(value = "bob", roles = { "USER", "SPECIAL_BOB" })
     @Test
     void testOnlyForAlice_shouldFailWithForbidden() throws Exception {
 
-        mockMvc.perform(post(MyJsonRpcMethodSecurityController.API)
+        final MvcResult result = mockMvc.perform(post(MyJsonRpcMethodSecurityController.API)
                 .content(getResourceAsString("/json/onlyForAlice.json"))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isOk())
+                .andReturn();
+
+        final JsonRpcResponse response = objectMapper.readValue(result.getResponse().getContentAsString(), JsonRpcResponse.class);
+        assertThat(response.getError()).isNotEmpty();
+        assertThat(response.getError().get("message").asText()).isEqualTo("Access is denied");
     }
 
     @WithMockUser(value = "bob", roles = { "USER", "SPECIAL_BOB" })
     @Test
     void testOnlyForBob() throws Exception {
 
-        mockMvc.perform(post(MyJsonRpcMethodSecurityController.API)
+        final MvcResult result = mockMvc.perform(post(MyJsonRpcMethodSecurityController.API)
                 .content(getResourceAsString("/json/onlyForBob.json"))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andReturn();
+
+        final JsonRpcResponse response = objectMapper.readValue(result.getResponse().getContentAsString(), JsonRpcResponse.class);
+        assertThat(response.getError()).isNull();
     }
 
     private String getResourceAsString(final String name) throws IOException {

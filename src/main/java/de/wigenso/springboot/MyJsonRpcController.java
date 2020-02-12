@@ -4,6 +4,8 @@ import de.wigenso.springboot.jsonrpc.JsonRpc;
 import de.wigenso.springboot.jsonrpc.JsonRpcController;
 import de.wigenso.springboot.jsonrpc.RpcController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
