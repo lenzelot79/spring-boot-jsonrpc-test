@@ -1,0 +1,9 @@
+{
+  "jsonrpc": "2.0",
+  "method": "helloPrincipal",
+  "params": {
+    "say": "hello",
+    "mark": "!"
+  },
+  "id": 99
+}

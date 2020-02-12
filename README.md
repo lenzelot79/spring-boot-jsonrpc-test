@@ -2,7 +2,6 @@
 Test project for spring-boot-jsonrpc
 
 ## Roadmap
-* Parameter-Injection von Spring-Contexten (HttpServletRequest, Prinzipal)
 * Tests mit Spring Retry
 * UNIT-Tests im Projekt
 * Test mit OAuth2RestTemplate (Keycloak)
