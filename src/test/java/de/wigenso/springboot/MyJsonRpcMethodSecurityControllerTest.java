@@ -43,8 +43,8 @@ class MyJsonRpcMethodSecurityControllerTest {
                 .andReturn();
 
         final JsonRpcResponse response = objectMapper.readValue(result.getResponse().getContentAsString(), JsonRpcResponse.class);
-        assertThat(response.getError()).isNotEmpty();
-        assertThat(response.getError().get("message").asText()).isEqualTo("Access is denied");
+        assertThat(response.getError()).isNotNull();
+        assertThat(response.getError().asText()).isEqualTo("Access is denied");
     }
 
     @WithMockUser(value = "bob", roles = { "USER", "SPECIAL_BOB" })

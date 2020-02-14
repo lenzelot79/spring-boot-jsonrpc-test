@@ -6,6 +6,5 @@ Test project for spring-boot-jsonrpc
 * UNIT-Tests im Projekt
 * Test mit OAuth2RestTemplate (Keycloak)
 * Dependency-Management (Spring Version abhängig vom Consumer)
-* Errorhandling, eigenen Converter für Errors
 * Doku in Readme (von Tests ableiten)
 * Deployment nach Maven Central
