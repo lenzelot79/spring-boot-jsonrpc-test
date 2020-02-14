@@ -2,7 +2,7 @@ package de.wigenso.springboot;
 
 import de.wigenso.springboot.jsonrpc.RemoteProcedure;
 import de.wigenso.springboot.jsonrpc.JsonRpcController;
-import de.wigenso.springboot.jsonrpc.RpcController;
+import de.wigenso.springboot.jsonrpc.RemoteProcedureController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @RequestMapping(value = MyJsonRpcMethodSecurityController.API) // TODO: add to RpcController annotation
-@RpcController
+@RemoteProcedureController
 public class MyJsonRpcMethodSecurityController extends JsonRpcController {
 
     static final String API = "/jsonrpc/secureapi";
