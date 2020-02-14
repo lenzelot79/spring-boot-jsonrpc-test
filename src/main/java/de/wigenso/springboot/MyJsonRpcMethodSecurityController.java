@@ -1,6 +1,6 @@
 package de.wigenso.springboot;
 
-import de.wigenso.springboot.jsonrpc.JsonRpc;
+import de.wigenso.springboot.jsonrpc.RemoteProcedure;
 import de.wigenso.springboot.jsonrpc.JsonRpcController;
 import de.wigenso.springboot.jsonrpc.RpcController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +19,20 @@ public class MyJsonRpcMethodSecurityController extends JsonRpcController {
     @Autowired
     private HttpServletRequest httpServletRequest;
 
-    @JsonRpc
+    @RemoteProcedure
     @PreAuthorize("hasRole('SPECIAL_ALICE')")
     public String onlyForAlice() {
         return "hello secret for alice";
     }
 
-    @JsonRpc
+    @RemoteProcedure
     @PreAuthorize("hasRole('SPECIAL_BOB')")
     public String onlyForBob() {
         return "hello secret for bob";
     }
 
 
-    @JsonRpc
+    @RemoteProcedure
     public String helloPrincipal(String say, Principal principal, String mark) {
         return say + " " + principal.getName() + mark;
     }

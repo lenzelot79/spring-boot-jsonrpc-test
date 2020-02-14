@@ -1,11 +1,9 @@
 package de.wigenso.springboot;
 
-import de.wigenso.springboot.jsonrpc.JsonRpc;
+import de.wigenso.springboot.jsonrpc.RemoteProcedure;
 import de.wigenso.springboot.jsonrpc.JsonRpcController;
 import de.wigenso.springboot.jsonrpc.RpcController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,26 +17,26 @@ public class MyJsonRpcController extends JsonRpcController {
     @Autowired
     private HttpServletRequest httpServletRequest;
 
-    @JsonRpc
+    @RemoteProcedure
     public void voidParamAndVoidReturn() {
     }
 
-    @JsonRpc
+    @RemoteProcedure
     public String voidParamAndStringReturn() {
         return "Hello World";
     }
 
-    @JsonRpc
+    @RemoteProcedure
     public void throwsRuntimeExceptions() {
         throw new RuntimeException("Hello Error");
     }
 
-    @JsonRpc
+    @RemoteProcedure
     public String twoParamsAndStringReturn(final String str1, final int int1) {
         return str1 + " " + int1;
     }
 
-    @JsonRpc
+    @RemoteProcedure
     public TestParam complexParamAndReturn(final TestParam testParam) {
         final TestParam r = new TestParam();
         r.setStr1(testParam.getStr1() + "+");
@@ -46,12 +44,12 @@ public class MyJsonRpcController extends JsonRpcController {
         return r;
     }
 
-    @JsonRpc
+    @RemoteProcedure
     public String echoHeader() {
         return httpServletRequest.getHeader("x-test");
     }
 
-    @JsonRpc
+    @RemoteProcedure
     public String combineHeaderAndParam(final String value2) {
         return httpServletRequest.getHeader("x-test") + value2;
     }
