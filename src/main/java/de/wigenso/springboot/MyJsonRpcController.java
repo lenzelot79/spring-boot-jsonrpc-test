@@ -1,15 +1,15 @@
 package de.wigenso.springboot;
 
-import de.wigenso.springboot.jsonrpc.RemoteProcedure;
 import de.wigenso.springboot.jsonrpc.JsonRpcController;
-import de.wigenso.springboot.jsonrpc.RemoteProcedureController;
+import de.wigenso.springboot.jsonrpc.RemoteProcedure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping(value = MyJsonRpcController.API)
-@RemoteProcedureController
+@RestController
 public class MyJsonRpcController extends JsonRpcController {
 
     static final String API = "/jsonrpc/api";
