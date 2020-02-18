@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(MyJsonRpcController.class)
-@WithMockUser(value = "bob", roles = { "USER" })
+@WithMockUser(value = "bob")
 class MyJsonRpcControllerTest {
 
     @Autowired
@@ -108,15 +108,6 @@ class MyJsonRpcControllerTest {
         assertThat(testParam.getInt1()).isEqualTo(43);
     }
 
-    // TODO: Unit-Tests in der Library selbst
-
-    // TODO: error cases
-    // > Error conververter for mapping exceptions to JSON(and vise versa for RestClient)
-
-    // TODO: Spring Security, Inject principal and HttpRequest
-    // > Should work out of the box on server
-    // > Rest-Client: Use SecuredRestTemplated for clients like Keycloak, otherwise add "Authorization" header VIA interceptor
-    
     private String getResourceAsString(final String name) throws IOException {
         return new String(this.getClass().getResourceAsStream(name).readAllBytes());
     }

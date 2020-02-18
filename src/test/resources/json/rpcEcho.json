@@ -1,0 +1,8 @@
+{
+  "jsonrpc": "2.0",
+  "method": "rpcEcho",
+  "params": {
+    "name": "Bob"
+  },
+  "id": 99
+}
