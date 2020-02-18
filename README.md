@@ -2,9 +2,8 @@
 Test project for spring-boot-jsonrpc
 
 ## Roadmap
-* Tests mit Spring Retry
+* Einstiegspunkt innerhalb des Controllers
 * UNIT-Tests im Projekt
-* Test mit OAuth2RestTemplate (Keycloak)
 * Dependency-Management (Spring Version abhängig vom Consumer)
 * Doku in Readme (von Tests ableiten)
 * Deployment nach Maven Central
