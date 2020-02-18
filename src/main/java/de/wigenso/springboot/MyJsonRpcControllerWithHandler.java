@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/testapi")
 @RestController
-public class MyJsonRpcControllerWithHandler extends JsonRpcHandler {
+public class MyJsonRpcControllerWithHandler  {
 
     @PostMapping("/rpc")
     @ResponseBody
     public JsonRpcResponse rpcEndpoint(@RequestBody JsonRpcRequest request) throws Throwable {
-        return jsonRpcCall(request);
+        return JsonRpcHandler.jsonRpcCall(request, this);
     }
 
     @RemoteProcedure
