@@ -1,12 +1,14 @@
 package de.wigenso.springboot;
 
 import de.wigenso.springboot.jsonrpc.JsonRpcClientBuilder;
+import de.wigenso.springboot.jsonrpc.JsonRpcClientException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 
@@ -45,8 +47,8 @@ class JsonRpcInvocationHandlerTest {
         final String resB = client.voidParamAndStringReturn();
         assertThat(resB).isEqualTo("Hello World");
 
-        final Exception e = assertThrows(Exception.class, client::throwsRuntimeExceptions);
-        assertThat(((UndeclaredThrowableException) e).getUndeclaredThrowable().getMessage()).isEqualTo("Hello Error");
+        final JsonRpcClientException e = assertThrows(JsonRpcClientException.class, client::throwsRuntimeExceptions);
+        assertThat(e.getMessage()).isEqualTo("Hello Error");
 
         final String resD = client.twoParamsAndStringReturn("Alice", 7);
         assertThat(resD).isEqualTo("Alice 7");
@@ -71,6 +73,5 @@ class JsonRpcInvocationHandlerTest {
         assertThat(result2).isEqualTo("hello+world");
 
     }
-
 
 }

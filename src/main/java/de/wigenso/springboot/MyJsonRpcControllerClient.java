@@ -1,6 +1,8 @@
 package de.wigenso.springboot;
 
 import de.wigenso.springboot.jsonrpc.JsonRpcClient;
+import de.wigenso.springboot.jsonrpc.JsonRpcClientException;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 @JsonRpcClient("/jsonrpc/api")
