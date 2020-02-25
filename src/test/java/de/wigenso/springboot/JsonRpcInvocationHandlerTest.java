@@ -34,6 +34,7 @@ class JsonRpcInvocationHandlerTest {
                 .withRestTemplate(restTemplate
                         .withBasicAuth("bob", "password").getRestTemplate())
                 .withBaseUrl("http://localhost:" + port)
+                .withErrorHandler(new MyJsonRpcClientErrorHandler())
                 .build();
     }
 
@@ -47,7 +48,7 @@ class JsonRpcInvocationHandlerTest {
         final String resB = client.voidParamAndStringReturn();
         assertThat(resB).isEqualTo("Hello World");
 
-        final JsonRpcClientException e = assertThrows(JsonRpcClientException.class, client::throwsRuntimeExceptions);
+        final MyJsonRpcClientException e = assertThrows(MyJsonRpcClientException.class, client::throwsRuntimeExceptions);
         assertThat(e.getMessage()).isEqualTo("Hello Error");
 
         final String resD = client.twoParamsAndStringReturn("Alice", 7);
