@@ -2,5 +2,6 @@
 Test project for spring-boot-jsonrpc
 
 ## Roadmap
-* Doku in Readme (von Tests ableiten)
 * Deployment nach Maven Central
+* Retries im Client
+* Unit-Tests
