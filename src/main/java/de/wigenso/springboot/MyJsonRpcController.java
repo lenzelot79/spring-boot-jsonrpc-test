@@ -28,7 +28,17 @@ public class MyJsonRpcController extends JsonRpcController {
 
     @RemoteProcedure
     public void throwsRuntimeExceptions() {
+        System.out.println("Hello Error ..... #" + callCount++);
         throw new RuntimeException("Hello Error");
+    }
+
+    private int callCount = 0;
+
+    @RemoteProcedure
+    public void throwsRuntimeExceptions3Times() {
+        if (callCount < 3) {
+            throw new RuntimeException("Hello Error #" + callCount++);
+        }
     }
 
     @RemoteProcedure

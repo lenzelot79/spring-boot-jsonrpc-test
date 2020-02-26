@@ -14,6 +14,8 @@ public interface MyJsonRpcControllerClient {
 
     void throwsRuntimeExceptions();
 
+    void throwsRuntimeExceptions3Times();
+
     String twoParamsAndStringReturn(final String str1, final int int1);
 
     TestParam complexParamAndReturn(final TestParam testParam);
