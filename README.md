@@ -1,7 +1,8 @@
 # spring-boot-jsonrpc-test
-Test project for spring-boot-jsonrpc
+IT-Test project for spring-boot-jsonrpc.
 
-## Roadmap
-* Retries im Client (Beipsiel mit Rest-Template)
-* Exceptions im Client
-* Deployment nach Maven Central
+You can use this project to try out the library or learn how to use it.
+
+<hr>
+
+*Implemented and published by Ludwig Lenz 2020, www.wigenso.de* 
